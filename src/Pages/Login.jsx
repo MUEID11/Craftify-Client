@@ -2,9 +2,32 @@ import { useState } from "react";
 import { FaRegEyeSlash } from "react-icons/fa";
 import { FaEye, FaGithub, FaGoogle } from "react-icons/fa6";
 import { NavLink } from "react-router-dom";
+import UseAuth from "../hooks/UseAuth";
 
 const Login = () => {
+  const { signInWithEmail, googleLogin, gitHubLogin } = UseAuth();
   const [showPass, setShowPass] = useState(false);
+  const [success, setSuccess] = useState("");
+  const [error, setError] = useState("");
+  const handleLogin = (e) => {
+    e.preventDefault();
+    const form = new FormData(e.currentTarget);
+    const email = form.get("email");
+    const password = form.get("password");
+    signInWithEmail(email, password)
+    .then(currentUser => {
+        console.log(currentUser);
+    })
+    .catch(error => {
+        console.log(error.message)
+    })
+  };
+  const socialLogin = (socialProvider) =>{
+    socialProvider()
+    .then(result =>{
+        console.log(result)
+    })
+  }
   return (
     <div className="container mx-auto w-full max-w-md p-4 rounded-md shadow sm:p-8 dark:bg-gray-50 dark:text-gray-800 m-10">
       <h2 className="mb-3 text-3xl font-semibold text-center">
@@ -22,6 +45,7 @@ const Login = () => {
       </p>
       <div className="my-6 space-y-4">
         <button
+        onClick={() => socialLogin(googleLogin)}
           aria-label="Login with Google"
           type="button"
           className="flex items-center justify-center w-full p-4 space-x-4 border rounded-md focus:ring-2 focus:ring-offset-1 dark:border-gray-600 focus:dark:ring-violet-600"
@@ -30,6 +54,7 @@ const Login = () => {
           <p>Login with Google</p>
         </button>
         <button
+        onClick={() => socialLogin(gitHubLogin)}
           aria-label="Login with GitHub"
           role="button"
           className="flex items-center justify-center w-full p-4 space-x-4 border rounded-md focus:ring-2 focus:ring-offset-1 dark:border-gray-600 focus:dark:ring-violet-600"
@@ -95,7 +120,8 @@ const Login = () => {
           </div>
         </div>
         <button
-          type="button"
+        onSubmit={handleLogin}
+          type="submit"
           className="w-full px-8 py-3 font-semibold rounded-md bg-violet-500 hover:bg-violet-700 dark:bg-violet-600 dark:text-gray-50 text-white"
         >
           Sign in

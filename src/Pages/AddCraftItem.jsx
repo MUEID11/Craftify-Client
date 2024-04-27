@@ -1,6 +1,5 @@
-import React, { useState } from "react";
-
-function AddCraftItemPage() {
+import { useState } from "react";
+function AddCraftItem() {
   const [formData, setFormData] = useState({
     image: "",
     itemName: "",
@@ -172,4 +171,4 @@ function AddCraftItemPage() {
   );
 }
 
-export default AddCraftItemPage;
+export default AddCraftItem;
