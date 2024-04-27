@@ -20,7 +20,7 @@ const Navbar = () => {
       setTheme("light");
     }
   };
-  const { user, logOutUser } = UseAuth();
+  const { user, logOutUser, loading } = UseAuth();
   const handleSignOut = () => {
     logOutUser()
       .then((result) => {
@@ -81,48 +81,62 @@ const Navbar = () => {
           </ul>
         </div>
         <div className="navbar-end">
-          {user ? (
-            <div className="dropdown dropdown-end group relative">
-              <div
-                tabIndex={0}
-                role="button"
-                className="group btn btn-ghost btn-circle avatar"
-              >
-                <div className="w-8 sm:w-10 rounded-full">
-                  <img
-                    alt="Tailwind CSS Navbar component"
-                    src={user?.photoURL}
-                  />
-                </div>
-              </div>
-              <ul
-                tabIndex={0}
-                className="menu menu-sm absolute hidden group-hover:block top-8  mt-3 z-[10] p-2 shadow bg-base-100 rounded-box w-52"
-              >
-                <li>
-                  <a className="justify-between">
-                    {user?.displayName}
-                    <span className="badge">New</span>
-                  </a>
-                </li>
-                <li>
-                  <a>{user?.email}</a>
-                </li>
-                <li>
-                  <Link to="/login">
-                    <button onClick={handleSignOut}>Logout</button>
-                  </Link>
-                </li>
-              </ul>
-            </div>
+          {loading ? (
+              <span className="text-purple-600 loading loading-infinity loading-lg"></span>
           ) : (
-            <div className="space-x-2">
-                <Link to="/login" type="button" className=" bg-violet-500 p-2 rounded text-white">
-              Log In
-            </Link>
-            <Link to="/register" type="button" className=" bg-violet-500 p-2 rounded text-white">
-              Register
-            </Link>
+            <div>
+              {user ? (
+                <div className="dropdown dropdown-end group relative">
+                  <div
+                    tabIndex={0}
+                    role="button"
+                    className="group btn btn-ghost btn-circle avatar"
+                  >
+                    <div className="w-8 sm:w-10 rounded-full">
+                      <img
+                        alt="Tailwind CSS Navbar component"
+                        src={user?.photoURL}
+                      />
+                    </div>
+                  </div>
+                  <ul
+                    tabIndex={0}
+                    className="menu menu-sm absolute hidden group-hover:block top-8  mt-3 z-[10] p-2 shadow bg-base-100 rounded-box w-52"
+                  >
+                    <li>
+                      <a className="justify-between">
+                        {user?.displayName}
+                        <span className="badge">New</span>
+                      </a>
+                    </li>
+                    <li>
+                      <a>{user?.email}</a>
+                    </li>
+                    <li>
+                      <Link to="/login">
+                        <button onClick={handleSignOut}>Logout</button>
+                      </Link>
+                    </li>
+                  </ul>
+                </div>
+              ) : (
+                <div className="space-x-2">
+                  <Link
+                    to="/login"
+                    type="button"
+                    className=" bg-violet-500 p-2 rounded text-white"
+                  >
+                    Log In
+                  </Link>
+                  <Link
+                    to="/register"
+                    type="button"
+                    className=" bg-violet-500 p-2 rounded text-white"
+                  >
+                    Register
+                  </Link>
+                </div>
+              )}
             </div>
           )}
           <input
