@@ -1,17 +1,20 @@
+import { FaGithub, FaGoogle } from "react-icons/fa";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import { Helmet } from "react-helmet";
 import { useState } from "react";
-import { FaRegEyeSlash } from "react-icons/fa";
-import { FaEye, FaGithub, FaGoogle } from "react-icons/fa6";
-import { NavLink, useLocation, useNavigate } from "react-router-dom";
-import UseAuth from "../hooks/UseAuth";
 import { toast } from "react-toastify";
+import { BiHide, BiShow } from "react-icons/bi";
+import UseAuth from "../hooks/UseAuth";
 
 const Register = () => {
-  const { createUser, googleLogin, gitHubLogin } = UseAuth();
+  const [showPass, setShowPass] = useState(false);
   const [success, setSuccess] = useState("");
-  const [error, setError] = useState("");
+  const [registerError, setRegisterError] = useState("");
+  // const [registerError, setRegisterError] = useState("");
+  const { createUser, updateUserProfile, googleLogin, gitHubLogin } =
+    UseAuth();
   const location = useLocation();
   const navigate = useNavigate();
-  const [showPass, setShowPass] = useState(false);
   const handleRegister = (e) => {
     e.preventDefault();
     const form = new FormData(e.currentTarget);
@@ -20,7 +23,7 @@ const Register = () => {
     const name = form.get("name");
     const photo = form.get("photo");
     if (!/(?=.*[A-Z])(?=.*[!@#$%^&*])(?=.{6,})/.test(password)) {
-      setError(
+      setRegisterError(
         "Password must be at least 6 characters long and contain at least one special character and one uppercase letter."
       );
       toast.error(
@@ -28,38 +31,57 @@ const Register = () => {
       );
       return;
     }
-      //reset error
-      setError("");
-      setSuccess("");
-    createUser(email, password, name, photo).then((currentUser) => {
-      console.log(currentUser);
-      navigate(location?.state ? location.state : "/");
-    }).catch(error => toast.error(error.message))
+    //reset error
+    setRegisterError("");
+    setSuccess("");
+    //creating user
+    createUser(email, password, name, photo)
+      .then(() => {
+        updateUserProfile(name, photo).then(() => {
+          setSuccess(toast.success("Registration successfull"));
+          navigate(location?.state ? location.state : "/");
+        });
+      })
+      .catch((error) => {
+        setRegisterError(error.message);
+        toast.error(error.message);
+      });
   };
-  const socialLogin = (socialProvider) =>{
-    socialProvider()
-    .then(result =>{
-        console.log(result)
-    })
-  }
+  const handleSocialLogin = (provider) => {
+   provider()
+      .then((result) => {
+        console.log(result);
+        setSuccess(toast.success("Login successfull"));
+        navigate(location?.state ? location.state : "/");
+      })
+      .catch((error) => {
+        setRegisterError(error.message);
+        toast.error(error.message);
+      });
+  };
+ 
   return (
-    <div className="container mx-auto w-full max-w-md p-4 rounded-md shadow sm:p-8 dark:bg-gray-50 dark:text-gray-800 m-10">
+    <div className="w-full max-w-md p-4 rounded-md shadow sm:p-8 dark:bg-gray-50 dark:text-gray-800 container mx-auto my-6 shadow-blue-100">
+      <Helmet>
+        <title>Register</title>
+      </Helmet>
       <h2 className="mb-3 text-3xl font-semibold text-center">
-        Register to your account
+        Login to your account
       </h2>
       <p className="text-sm text-center dark:text-gray-600">
         Already have account?
-        <NavLink
+        <Link
           to="/login"
           rel="noopener noreferrer"
           className="focus:underline hover:underline"
         >
-          Login here
-        </NavLink>
+          Sign in
+        </Link>
       </p>
+
       <div className="my-6 space-y-4">
         <button
-        onClick={() =>socialLogin(googleLogin)}
+          onClick={() => handleSocialLogin(googleLogin)}
           aria-label="Login with Google"
           type="button"
           className="flex items-center justify-center w-full p-4 space-x-4 border rounded-md focus:ring-2 focus:ring-offset-1 dark:border-gray-600 focus:dark:ring-violet-600"
@@ -68,7 +90,7 @@ const Register = () => {
           <p>Login with Google</p>
         </button>
         <button
-        onClick={() =>socialLogin(gitHubLogin)}
+          onClick={() => handleSocialLogin(gitHubLogin)}
           aria-label="Login with GitHub"
           role="button"
           className="flex items-center justify-center w-full p-4 space-x-4 border rounded-md focus:ring-2 focus:ring-offset-1 dark:border-gray-600 focus:dark:ring-violet-600"
@@ -82,15 +104,20 @@ const Register = () => {
         <p className="px-3 dark:text-gray-600">OR</p>
         <hr className="w-full dark:text-gray-600" />
       </div>
-      <form noValidate="" action="" className="space-y-8">
+      <form
+        onSubmit={handleRegister}
+        noValidate=""
+        action=""
+        className="space-y-8"
+      >
         <div className="space-y-4">
           <div className="space-y-2">
             <label htmlFor="name" className="block text-sm">
-              Email address
+              Full name
             </label>
             <input
-              type="text"
               required
+              type="text"
               name="name"
               id="name"
               placeholder="Your name here"
@@ -99,14 +126,14 @@ const Register = () => {
           </div>
           <div className="space-y-2">
             <label htmlFor="photo" className="block text-sm">
-              Email address
+              Image URL
             </label>
             <input
-              type="text"
               required
+              type="text"
               name="photo"
               id="photo"
-              placeholder="Photo URL"
+              placeholder="Image url here"
               className="w-full px-3 py-2 border rounded-md dark:border-gray-300 dark:bg-gray-50 dark:text-gray-800 focus:dark:border-violet-600"
             />
           </div>
@@ -115,58 +142,55 @@ const Register = () => {
               Email address
             </label>
             <input
-              type="email"
               required
+              type="email"
               name="email"
               id="email"
-              placeholder="Email"
+              placeholder="Your email here"
               className="w-full px-3 py-2 border rounded-md dark:border-gray-300 dark:bg-gray-50 dark:text-gray-800 focus:dark:border-violet-600"
             />
           </div>
-          <div className="space-y-2 relative">
-            <div className="flex justify-between">
-              <label htmlFor="password" className="text-sm">
-                Password
-              </label>
-              <a
-                rel="noopener noreferrer"
-                href="#"
-                className="text-xs hover:underline dark:text-gray-600"
-              >
-                Forgot password?
-              </a>
-            </div>
-            <input
-              type={showPass ? "text" : "password"}
-              name="password"
-              required
-              id="password"
-              placeholder="Password"
-              className="w-full px-3 py-2 border rounded-md dark:border-gray-300 dark:bg-gray-50 dark:text-gray-800 focus:dark:border-violet-600"
-            />
-            <div>
-              {showPass ? (
-                <FaEye
-                  onClick={() => setShowPass(false)}
-                  className="absolute top-10 right-4"
-                />
-              ) : (
-                <FaRegEyeSlash
-                  onClick={() => setShowPass(true)}
-                  className="absolute top-10 right-4"
-                />
-              )}
+          <div className="space-y-2">
+            <label className="label">
+              <span className="label-text">Password</span>
+            </label>
+            <div className="relative">
+              <input
+                type={showPass ? "text" : "password"}
+                // onChange={(e) => validatePassword(e.target.value)}
+                placeholder="password"
+                name="password"
+                id="password"
+                className="w-full px-3 py-2 border rounded-md dark:border-gray-300 dark:bg-gray-50 dark:text-gray-800 focus:dark:border-violet-600"
+                required
+              />
+              <div>
+                {showPass ? (
+                  <BiShow
+                    onClick={() => setShowPass(false)}
+                    className="text-2xl absolute top-3 right-2"
+                  />
+                ) : (
+                  <BiHide
+                    onClick={() => setShowPass(true)}
+                    className="text-2xl absolute top-3 right-2"
+                  />
+                )}
+              </div>
             </div>
           </div>
         </div>
         <button
-        onSubmit={handleRegister}
           type="submit"
-          className="w-full px-8 py-3 font-semibold rounded-md bg-violet-500 hover:bg-violet-700 dark:bg-violet-600 dark:text-gray-50 text-white"
+          className="w-full btn bg-blue-500 text-white border-none px-8 py-3 font-semibold rounded-md dark:bg-violet-600 dark:text-gray-50"
         >
-          Sign in
+          Register
         </button>
       </form>
+      {(success && (
+        <p className="text-green-500">User created succesfully</p>
+      )) ||
+        (registerError && <p className="text-red-500">{registerError}</p>)}
     </div>
   );
 };

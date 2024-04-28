@@ -7,6 +7,8 @@ import AddCraftItem from "../Pages/AddCraftItem";
 import PrivateRoute from "./PrivateRoute";
 import MyCrafts from "../Pages/MyCrafts";
 import Register from "../Pages/Register";
+import Home from "../Pages/Home";
+import AllCrafts from "../Pages/AllCrafts";
 
 const routers = createBrowserRouter([
   {
@@ -14,6 +16,10 @@ const routers = createBrowserRouter([
     element: <App></App>,
     errorElement: <ErrorPage/>,
     children: [
+      {
+        path:'/',
+        element: <Home></Home>
+      },
       {
         path: "/login",
         element: <Login></Login>,
@@ -31,8 +37,8 @@ const routers = createBrowserRouter([
         element: <PrivateRoute><MyCrafts/></PrivateRoute>
       },
       {
-        path: '/allcraft',
-        element: <h2>all craft items</h2>
+        path: "/allart",
+        element: <AllCrafts></AllCrafts>
       }
 
     ],

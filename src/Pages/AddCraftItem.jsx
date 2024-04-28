@@ -1,70 +1,108 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import UseAuth from "../hooks/UseAuth";
+import { toast } from "react-toastify";
+import { Helmet } from "react-helmet";
 function AddCraftItem() {
-  const [formData, setFormData] = useState({
-    image: "",
-    itemName: "",
-    subcategoryName: "",
-    shortDescription: "",
-    price: "",
-    rating: "",
-    customization: "",
-    processingTime: "",
-    stockStatus: "",
-    userEmail: "",
-    userName: "",
-  });
-
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
-  };
+  const { user } = UseAuth();
+  console.log(user);
+  const [subcategory, setSubcategory] = useState([]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    const form = e.target;
+    const email = form.email.value;
+    const name = form.name.value;
+    const photo = form.photo.value;
+    const itemName = form.itemName.value;
+    const subcategory = form.subcategory.value;
+    const stockStatus = form.stockStatus.value;
+    const shortDescription = form.shortDescription.value;
+    const price = form.price.value;
+    const rating = form.rating.value;
+    const customization = form.customization.value;
+    const processingTime = form.processingTime.value;
+    const formData = {
+      email,
+      name,
+      photo,
+      itemName,
+      subcategory,
+      stockStatus,
+      shortDescription,
+      price,
+      rating,
+      customization,
+      processingTime,
+    };
     // Implement your form submission logic here
     console.log(formData);
+    fetch("http://localhost:5000/allart", {
+      method: "POST",
+      headers: { "content-type": "application/json" },
+      body: JSON.stringify(formData),
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        if (data?.insertedId) {
+          toast.success("Item added succesfully");
+          form.reset();
+        }
+      })
+      .catch((error) => {
+        console.log(error.message);
+      });
   };
 
+  useEffect(() => {
+    fetch("http://localhost:5000/sub_category")
+      .then((res) => res.json())
+      .then((subdata) => {
+        console.log(subdata);
+        setSubcategory(subdata);
+      })
+      .catch((error) => console.log(error));
+  }, []);
   return (
     <div className="p-4 bg-dark dark:text-white container mx-auto">
       <div className="text-center mb-8">
-      <h1 className="text-xl sm:text-3xl font-bold mb-4">Add Craft Item</h1>
-      <p>Craftsmanship thrives in brevity. Please adorn each field with your creative essence, aiming for two lines of enchanting detail.</p>
+        <h1 className="text-xl sm:text-3xl font-bold mb-4">Add Craft Item</h1>
+        <p>
+          Craftsmanship thrives in brevity. Please adorn each field with your
+          creative essence, aiming for two lines of enchanting detail.
+        </p>
       </div>
       <form onSubmit={handleSubmit}>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
           <div>
             <label htmlFor="userName">User Name</label>
             <input
+              disabled
+              defaultValue={user?.displayName}
               type="text"
-              id="userName"
-              name="userName"
-              value={formData.userName}
-              onChange={handleChange}
+              id="name"
+              name="name"
               className="w-full rounded-md p-2 bg-gray-100 dark:bg-gray-800"
             />
           </div>
           <div>
             <label htmlFor="userEmail">User Email</label>
             <input
+              disabled
+              defaultValue={user?.email}
               type="email"
-              id="userEmail"
-              name="userEmail"
-              value={formData.userEmail}
-              onChange={handleChange}
+              id="email"
+              name="email"
               className="w-full rounded-md p-2 bg-gray-100 dark:bg-gray-800"
             />
           </div>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div>
-            <label htmlFor="image">Image URL</label>
+            <label htmlFor="photo">Image URL</label>
             <input
               type="text"
-              id="image"
-              name="image"
-              value={formData.image}
-              onChange={handleChange}
+              id="photo"
+              name="photo"
               className="w-full rounded-md p-2 bg-gray-100 dark:bg-gray-800"
             />
           </div>
@@ -74,29 +112,28 @@ function AddCraftItem() {
               type="text"
               id="itemName"
               name="itemName"
-              value={formData.itemName}
-              onChange={handleChange}
               className="w-full rounded-md p-2 bg-gray-100 dark:bg-gray-800"
             />
           </div>
           <div>
             <label htmlFor="subcategoryName">Subcategory Name</label>
-            <input
-              type="text"
-              id="subcategoryName"
-              name="subcategoryName"
-              value={formData.subcategoryName}
-              onChange={handleChange}
+            <select
+              id="subcategory"
+              name="subcategory"
               className="w-full rounded-md p-2 bg-gray-100 dark:bg-gray-800"
-            />
+            >
+              {subcategory.map((sub) => (
+                <option key={sub?._id} value={sub?.name}>
+                  {sub?.name}
+                </option>
+              ))}
+            </select>
           </div>
           <div>
             <label htmlFor="stockStatus">Stock Status</label>
             <select
               id="stockStatus"
               name="stockStatus"
-              value={formData.stockStatus}
-              onChange={handleChange}
               className="w-full rounded-md p-2 bg-gray-100 dark:bg-gray-800"
             >
               <option value="In stock">In stock</option>
@@ -108,8 +145,6 @@ function AddCraftItem() {
             <textarea
               id="shortDescription"
               name="shortDescription"
-              value={formData.shortDescription}
-              onChange={handleChange}
               className="w-full rounded-md p-2 bg-gray-100 dark:bg-gray-800"
             ></textarea>
           </div>
@@ -119,8 +154,6 @@ function AddCraftItem() {
               type="text"
               id="price"
               name="price"
-              value={formData.price}
-              onChange={handleChange}
               className="w-full rounded-md p-2 bg-gray-100 dark:bg-gray-800"
             />
           </div>
@@ -130,8 +163,6 @@ function AddCraftItem() {
               type="text"
               id="rating"
               name="rating"
-              value={formData.rating}
-              onChange={handleChange}
               className="w-full rounded-md p-2 bg-gray-100 dark:bg-gray-800"
             />
           </div>
@@ -140,8 +171,6 @@ function AddCraftItem() {
             <select
               id="customization"
               name="customization"
-              value={formData.customization}
-              onChange={handleChange}
               className="w-full rounded-md p-2 bg-gray-100 dark:bg-gray-800"
             >
               <option value="yes">Yes</option>
@@ -154,8 +183,6 @@ function AddCraftItem() {
               type="text"
               id="processingTime"
               name="processingTime"
-              value={formData.processingTime}
-              onChange={handleChange}
               className="w-full rounded-md p-2 bg-gray-100 dark:bg-gray-800"
             />
           </div>
