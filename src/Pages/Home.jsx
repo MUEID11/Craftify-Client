@@ -1,6 +1,7 @@
 
 import SwiperSlider from "../Components/SwiperSlider";
 import UseAuth from "../hooks/UseAuth";
+import CraftItems from "./CraftItems";
 
 import Faq from "./Faq";
 
@@ -11,9 +12,9 @@ const Home = () => {
       <span className="loading loading-spinner text-info loading-md absolute top-50 translate-y-5"></span>
     </div>
   ) : (
-    <div className="container mx-auto p-3 my-4">
+    <div className="container mx-auto p-6">
       <SwiperSlider></SwiperSlider>
-
+        <CraftItems></CraftItems>
       <Faq></Faq>
     </div>
   );

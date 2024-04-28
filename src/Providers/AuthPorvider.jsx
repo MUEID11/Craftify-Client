@@ -11,14 +11,6 @@ const gitHubProvider = new GithubAuthProvider();
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
-  const [data, setData] = useState([]);
-  useEffect(() => {
-    fetch("/bannerData.json")
-      .then((res) => res.json())
-      .then((info) => {
-        setData(info);
-      });
-  },[]);
   const createUser = (email, password) => {
     setLoading(true);
     return createUserWithEmailAndPassword(auth, email, password);
@@ -59,7 +51,6 @@ const AuthProvider = ({ children }) => {
   },[]);
   const authInfo = {
     user,
-    data,
     loading,
     createUser,
     signInUser,
