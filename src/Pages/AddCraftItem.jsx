@@ -1,12 +1,10 @@
 import { useEffect, useState } from "react";
 import UseAuth from "../hooks/UseAuth";
 import { toast } from "react-toastify";
-import { Helmet } from "react-helmet";
+
 function AddCraftItem() {
   const { user } = UseAuth();
-  console.log(user);
-  const [subcategory, setSubcategory] = useState([]);
-
+  const [subCategory, setSubCategory] = useState([]);
   const handleSubmit = (e) => {
     e.preventDefault();
     const form = e.target;
@@ -58,7 +56,7 @@ function AddCraftItem() {
       .then((res) => res.json())
       .then((subdata) => {
         console.log(subdata);
-        setSubcategory(subdata);
+        setSubCategory(subdata);
       })
       .catch((error) => console.log(error));
   }, []);
@@ -122,9 +120,9 @@ function AddCraftItem() {
               name="subcategory"
               className="w-full rounded-md p-2 bg-gray-100 dark:bg-gray-800"
             >
-              {subcategory.map((sub) => (
+              {subCategory.map((sub) => (
                 <option key={sub?._id} value={sub?.name}>
-                  {sub?.name}
+                  {sub?.subcategory}
                 </option>
               ))}
             </select>

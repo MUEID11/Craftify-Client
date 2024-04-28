@@ -1,5 +1,7 @@
+import { Link } from "react-router-dom";
+
 const Card = ({card}) => {
-    const {itemName, stockStatus , photo, shortDescription} = card;
+    const {_id, itemName, stockStatus , photo, shortDescription} = card;
   return (
     <div>
       <div className="card w-full glass">
@@ -15,7 +17,9 @@ const Card = ({card}) => {
           <p className="font-semibold">{stockStatus}</p>
           <p className="text-sm">{shortDescription}</p>
           <div className="card-actions justify-end">
+            <Link to={`details/${_id}`}>
             <button className="btn btn-primary">View details</button>
+            </Link>
           </div>
         </div>
       </div>

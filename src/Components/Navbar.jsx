@@ -124,14 +124,14 @@ const Navbar = () => {
                   <Link
                     to="/login"
                     type="button"
-                    className=" bg-violet-500 p-2 rounded text-white"
+                    className="btn bg-violet-500 btn-sm rounded text-white"
                   >
                     Log In
                   </Link>
                   <Link
                     to="/register"
                     type="button"
-                    className=" bg-violet-500 p-2 rounded text-white"
+                    className="btn bg-violet-600 btn-sm rounded text-white"
                   >
                     Register
                   </Link>

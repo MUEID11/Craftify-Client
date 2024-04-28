@@ -9,6 +9,7 @@ import MyCrafts from "../Pages/MyCrafts";
 import Register from "../Pages/Register";
 import Home from "../Pages/Home";
 import AllCrafts from "../Pages/AllCrafts";
+import Details from "../Components/Details";
 
 const routers = createBrowserRouter([
   {
@@ -38,7 +39,11 @@ const routers = createBrowserRouter([
       },
       {
         path: "/allart",
-        element: <AllCrafts></AllCrafts>
+        element: <AllCrafts></AllCrafts>,
+      },
+      {
+        path: "/details/:id",
+        element: <Details></Details>,
       }
 
     ],

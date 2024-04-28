@@ -26,9 +26,9 @@ export default function SwiperSlider() {
   return (
     <>
       {loading ? (
-        <div className="relative h-[65vh] flex items-center justify-center">
-          <span className="oading loading-ball loading-lg absolute top-50 translate-y-5"></span>
-        </div>
+       <div className="relative h-[65vh] flex items-center justify-center">
+       <span className="loading loading-ring loading-xs text-primary absolute translate-y-5"></span>
+     </div>
       ) : (
         <Swiper
           spaceBetween={30}
@@ -48,16 +48,16 @@ export default function SwiperSlider() {
             <SwiperSlide key={slide._id}>
               <div
                 className="hero bg-cover min-h-[350px] sm:min-h-[600px]"
-                style={{ backgroundImage: `url(${slide?.image})` }}
+                style={{ backgroundImage: `url(${slide?.photo})` }}
               >
                 <div className="bg-opacity-60"></div>
                 <div className="hero-content text-center text-neutral-content">
                   <div className="max-w-md">
                     <h1 className="mb-5 text-6xl text-violet-500 font-extrabold  animate__animated animate__backInDown">
-                      {slide?.name}
+                      {slide?.itemName}
                     </h1>
-                    <p className="mb-5  animate__animated animate__backInUp">
-                      {slide?.description}
+                    <p className="mb-5 text-2xl text-slate-700 font-bold  animate__animated animate__backInUp">
+                      {slide?.shortDescription}
                     </p>
                   </div>
                 </div>
