@@ -8,7 +8,6 @@ const CraftItems = () => {
         fetch('http://localhost:5000/allart/limited')
         .then(res => res.json())
         .then(card => {
-            console.log(card);
             setCards(card)
             setLoading(false);
         })

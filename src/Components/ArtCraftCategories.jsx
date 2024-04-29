@@ -9,7 +9,6 @@ const ArtCraftCategories = () => {
       .then((res) => res.json())
       .then((data) => {
         setCategories(data);
-        console.log(data);
         setLoading(false);
       })
       .catch((error) => {

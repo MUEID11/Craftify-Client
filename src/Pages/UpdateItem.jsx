@@ -1,12 +1,34 @@
 import { useEffect, useState } from "react";
 import UseAuth from "../hooks/UseAuth";
-import { toast } from "react-toastify";
+import Swal from "sweetalert2";
+import { useParams } from "react-router-dom";
 
-
-function AddCraftItem() {
+function UpdateItem() {
+  const { id } = useParams();
   const { user } = UseAuth();
+  const [updateItem, setUpdateItem] = useState({});
+  const {
+    photo,
+    itemName,
+    shortDescription,
+    price,
+    rating,
+    stockStatus,
+    processingTime,
+  } = updateItem;
   const [subCategory, setSubCategory] = useState([]);
-  const handleSubmit = (e) => {
+  useEffect(() => {
+    fetch(`http://localhost:5000/update/${id}`)
+      .then((res) => res.json())
+      .then((item) => {
+        console.log(item);
+        setUpdateItem(item);
+      })
+      .catch((error) => {
+        error.message;
+      });
+  }, [id]);
+  const handleUpdate = (e) => {
     e.preventDefault();
     const form = e.target;
     const email = form.email.value;
@@ -20,7 +42,7 @@ function AddCraftItem() {
     const rating = form.rating.value;
     const customization = form.customization.value;
     const processingTime = form.processingTime.value;
-    const formData = {
+    const updateInfo = {
       email,
       name,
       photo,
@@ -33,22 +55,22 @@ function AddCraftItem() {
       customization,
       processingTime,
     };
-    // Implement your form submission logic here
-    console.log(formData);
-    fetch("http://localhost:5000/allart", {
-      method: "POST",
+    fetch(`http://localhost:5000/updateitem/${id}`, {
+      method: "PUT",
       headers: { "content-type": "application/json" },
-      body: JSON.stringify(formData),
+      body: JSON.stringify(updateInfo),
     })
       .then((res) => res.json())
       .then((data) => {
-        if (data?.insertedId) {
-          toast.success("Item added succesfully");
-          form.reset();
+        console.log(data);
+        if (data.modifiedCount > 0) {
+        setUpdateItem(updateInfo)
+          Swal.fire({
+            title: "Item updated!",
+            text: "Your item is updated!",
+            icon: "success",
+          });
         }
-      })
-      .catch((error) => {
-        console.log(error.message);
       });
   };
 
@@ -56,7 +78,6 @@ function AddCraftItem() {
     fetch("http://localhost:5000/sub_category")
       .then((res) => res.json())
       .then((subdata) => {
-        console.log(subdata);
         setSubCategory(subdata);
       })
       .catch((error) => console.log(error));
@@ -64,13 +85,15 @@ function AddCraftItem() {
   return (
     <div className="p-4 bg-dark dark:text-white container mx-auto">
       <div className="text-center mb-8">
-        <h1 className="text-xl sm:text-3xl font-bold mb-4">Add Craft Item</h1>
+        <h1 className="text-xl sm:text-3xl font-bold mb-4">
+          Update Craft Item
+        </h1>
         <p>
           Craftsmanship thrives in brevity. Please adorn each field with your
           creative essence, aiming for two lines of enchanting detail.
         </p>
       </div>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleUpdate}>
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
           <div>
             <label htmlFor="userName">User Name</label>
@@ -99,6 +122,7 @@ function AddCraftItem() {
           <div>
             <label htmlFor="photo">Image URL</label>
             <input
+              defaultValue={photo}
               type="text"
               id="photo"
               name="photo"
@@ -108,6 +132,7 @@ function AddCraftItem() {
           <div>
             <label htmlFor="itemName">Item Name</label>
             <input
+              defaultValue={itemName}
               type="text"
               id="itemName"
               name="itemName"
@@ -131,6 +156,7 @@ function AddCraftItem() {
           <div>
             <label htmlFor="stockStatus">Stock Status</label>
             <select
+              defaultValue={stockStatus}
               id="stockStatus"
               name="stockStatus"
               className="w-full rounded-md p-2 bg-gray-100 dark:bg-gray-800"
@@ -142,6 +168,7 @@ function AddCraftItem() {
           <div className="md:col-span-2">
             <label htmlFor="shortDescription">Short Description</label>
             <textarea
+              defaultValue={shortDescription}
               id="shortDescription"
               name="shortDescription"
               className="w-full rounded-md p-2 bg-gray-100 dark:bg-gray-800"
@@ -150,6 +177,7 @@ function AddCraftItem() {
           <div>
             <label htmlFor="price">Price</label>
             <input
+              defaultValue={price}
               type="text"
               id="price"
               name="price"
@@ -159,6 +187,7 @@ function AddCraftItem() {
           <div>
             <label htmlFor="rating">Rating</label>
             <input
+              defaultValue={rating}
               type="text"
               id="rating"
               name="rating"
@@ -179,6 +208,7 @@ function AddCraftItem() {
           <div>
             <label htmlFor="processingTime">Processing Time</label>
             <input
+              defaultValue={processingTime}
               type="text"
               id="processingTime"
               name="processingTime"
@@ -186,15 +216,15 @@ function AddCraftItem() {
             />
           </div>
         </div>
-        <button
-          type="submit"
-          className="bg-violet-500 hover:bg-violet-700 w-full text-white font-bold py-2 px-4 rounded mt-4"
-        >
-          Add
-        </button>
+          <button
+            type="submit"
+            className="bg-violet-500 hover:bg-violet-700 w-full text-white font-bold py-2 px-4 rounded mt-4"
+          >
+            Update
+          </button>
       </form>
     </div>
   );
 }
 
-export default AddCraftItem;
+export default UpdateItem;

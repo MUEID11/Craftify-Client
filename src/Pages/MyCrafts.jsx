@@ -8,19 +8,19 @@ const MyCrafts = () => {
   const [loading, setLoading] = useState(true);
   const { user } = UseAuth();
   const [myCrafts, setMyCrafts] = useState([]);
+  const [remaining, setRemaining] = useState(true);
   useEffect(() => {
     fetch(`http://localhost:5000/mycraft/${user?.email}`)
       .then((res) => res.json())
       .then((items) => {
         setMyCrafts(items);
         setLoading(false);
-        console.log(items);
       })
       .catch((error) => {
         setLoading(false);
         console.log(error);
       });
-  }, [user]);
+  }, [user, remaining]);
   return (
     <div className="sm:my-12 min-h-screen">
       <Helmet>
@@ -32,7 +32,7 @@ const MyCrafts = () => {
       <div className="container mx-auto grid md:grid-cols-2 lg:grid-cols-3 gap-8">
         {!loading ? (
           myCrafts.map((craft) => (
-            <MyItem key={craft?._id} craft={craft}></MyItem>
+            <MyItem key={craft?._id} craft={craft} remaining={remaining} setRemaining={setRemaining} ></MyItem>
           ))
         ) : (
           <>

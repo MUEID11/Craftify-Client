@@ -17,7 +17,7 @@ const Details = () => {
   } = craftDetails;
   console.log(id);
   useEffect(() => {
-    fetch(`http://localhost:5000/allart/${id}`)
+    fetch(`http://localhost:5000/allartcraft/${id}`)
       .then((res) => res.json())
       .then((item) => {
         console.log(item);

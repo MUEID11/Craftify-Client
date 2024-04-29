@@ -56,7 +56,7 @@ const AllCrafts = () => {
                     </div>
                   </td>
                   <td>
-                   {item?.shortDescription.slice(0, 30)}...
+                   {item?.shortDescription?.slice(0, 30)}...
                     <br />
                     <span className="badge badge-ghost badge-sm">
                       {item?.stockStatus}
