@@ -3,6 +3,7 @@ import UseAuth from "../hooks/UseAuth";
 import logo from "../../public/vitelogo.png";
 import { useEffect, useState } from "react";
 import { FaBuffer } from "react-icons/fa6";
+import { toast } from "react-toastify";
 
 const Navbar = () => {
   const initialTheme = localStorage.getItem("theme") || "light";
@@ -24,7 +25,7 @@ const Navbar = () => {
   const handleSignOut = () => {
     logOutUser()
       .then((result) => {
-        console.log("logged out succsfull", result);
+        toast.error("User logged out", result)
       })
       .catch((error) => {
         console.log(error);

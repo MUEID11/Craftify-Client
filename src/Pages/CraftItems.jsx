@@ -17,7 +17,7 @@ const CraftItems = () => {
         })
     },[])
     return (
-        <div className="container mx-auto sm:mt-24 mt-4">
+        <div className="container mx-auto sm:my-24 my-6">
         <h2 className="my-8 lg:my-16 text-center text-4xl font-bold">Crafts Items</h2>
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
         {

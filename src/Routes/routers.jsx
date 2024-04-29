@@ -10,6 +10,9 @@ import Register from "../Pages/Register";
 import Home from "../Pages/Home";
 import AllCrafts from "../Pages/AllCrafts";
 import Details from "../Components/Details";
+import Contact from "../Pages/Contact";
+import About from "../Pages/About";
+import SubCategories from "../Pages/SubCategories";
 
 const routers = createBrowserRouter([
   {
@@ -43,9 +46,20 @@ const routers = createBrowserRouter([
       },
       {
         path: "/details/:id",
-        element: <Details></Details>,
+        element: <PrivateRoute><Details/></PrivateRoute>,
+      },
+      {
+        path: "/contacts",
+        element: <Contact></Contact>
+      },
+      {
+        path: "/about",
+        element: <About></About>
+      },
+      {
+        path:'/cat/:id',
+        element: <SubCategories></SubCategories>
       }
-
     ],
   },
 ]);

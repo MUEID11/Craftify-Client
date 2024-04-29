@@ -24,7 +24,7 @@ const ArtCraftCategories = () => {
           <span className="loading loading-ring loading-xs text-primary absolute translate-y-5"></span>
         </div>
       ) : (
-        <div className="container mx-auto my-6 sm:my-16">
+        <div className="container mx-auto my-6 sm:my-28">
           <h2 className="text-4xl font-bold my-8 sm:my-16 text-center ">
             Art and Craft Categroies
           </h2>

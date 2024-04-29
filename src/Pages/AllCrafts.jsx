@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { useLoaderData } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 const AllCrafts = () => {
   const [loading, setLoading] = useState(true);
@@ -22,15 +22,15 @@ const AllCrafts = () => {
           <span className="loading loading-ring loading-xs text-primary absolute translate-y-5"></span>
         </div>
       ) : (
-        <div className="overflow-x-auto mt-16">
+        <div className="overflow-x-auto my-6 sm:my-16">
           <table className="table">
             {/* head */}
             <thead>
               <tr>
                 <th></th>
                 <th>Name</th>
-                <th>Job</th>
-                <th>Favorite Color</th>
+                <th>Description</th>
+                <th>Sub Category</th>
                 <th></th>
               </tr>
             </thead>
@@ -50,21 +50,23 @@ const AllCrafts = () => {
                         </div>
                       </div>
                       <div>
-                        <div className="font-bold">Hart Hagerty</div>
-                        <div className="text-sm opacity-50">United States</div>
+                        <div className="font-bold">{item?.itemName}</div>
+                        <div className="text-sm opacity-50">{item?.name}</div>
                       </div>
                     </div>
                   </td>
                   <td>
-                    Zemlak, Daniel and Leannon
+                   {item?.shortDescription.slice(0, 30)}...
                     <br />
                     <span className="badge badge-ghost badge-sm">
-                      Desktop Support Technician
+                      {item?.stockStatus}
                     </span>
                   </td>
-                  <td>Purple</td>
+                  <td>{item?.subcategory}</td>
                   <th>
+                    <Link to={`/details/${item?._id}`}>
                     <button className="btn btn-ghost btn-sm">details</button>
+                    </Link>
                   </th>
                 </tr>
               </tbody>

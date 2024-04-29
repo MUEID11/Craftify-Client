@@ -33,17 +33,17 @@ const Details = () => {
     <div>
       {loading ? (
         <div className="relative h-screen flex items-center justify-center">
-          <span className="loading loading-ball text-primary loading-md absolute top-50 translate-y-5"></span>
+          <span className="loading loading-ring text-primary loading-md absolute -translate-y-20"></span>
         </div>
       ) : (
-        <section className="container mx-auto">
-          <div className="dark:bg-violet-900 bg-violet-400 p-14">
-            <div className="container flex flex-col items-center px-4 py-16 pb-24 text-center lg:pb-56 md:py-32 md:px-10 dark:text-gray-50">
-              <h1 className="text-5xl font-bold leading-none sm:text-6xl xl:max-w-3xl dark:text-gray-50">
+        <section className="container mx-auto mt-8 rounded-xl">
+          <div className="dark:bg-violet-900 bg-violet-400 rounded-xl">
+            <div className="container flex flex-col items-center px-4 py-12 pb-24 text-center lg:pb-56 md:px-10 dark:text-gray-50">
+              <h1 className="text-2xl font-bold leading-none sm:text-5xl xl:max-w-3xl dark:text-gray-50">
                 {itemName}
               </h1>
               <div className="mb-8 text-lg mt-8 space-y-2">
-                <p className="text-4xl xl:max-w-3xl dark:text-gray-50 font-bold">
+                <p className="text-xl sm:text-2xl xl:max-w-3xl dark:text-gray-50 font-bold">
                   {subcategory}
                 </p>
                 <p className="text-lg  xl:max-w-3xl dark:text-gray-50 font-bold">
@@ -80,8 +80,8 @@ const Details = () => {
           </div>
           <img
             src={photo}
-            alt=""
-            className="w-5/6 mx-auto mb-12 -mt-20 dark:bg-gray-500 rounded-lg shadow-md lg:-mt-64"
+            alt={itemName}
+            className="w-5/6 mx-auto mb-12 -mt-20 dark:bg-gray-500 rounded-lg shadow-md lg:-mt-48"
           />
         </section>
       )}
