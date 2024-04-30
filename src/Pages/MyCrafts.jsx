@@ -3,6 +3,8 @@ import { useEffect, useState } from "react";
 import MyItem from "./MyItem";
 import { Link } from "react-router-dom";
 import { Helmet } from "react-helmet";
+import nodata from "./../assets/nodata.json"
+import Lottie from "lottie-react";
 
 const MyCrafts = () => {
   const [loading, setLoading] = useState(true);
@@ -44,7 +46,7 @@ const MyCrafts = () => {
       <h2 className="text-3xl font-bold text-center mb-6">
         My Arts and Crafts
       </h2>
-      <div className="flex justify-center items-center space-x-2 mb-8">
+      <div className="flex justify-center items-center space-x-2 mb-16 p-4">
         <button className="btn btn-md" onClick={() => setShowAll(!showAll)}>
           See all crafts
         </button>
@@ -80,14 +82,10 @@ const MyCrafts = () => {
             <div className="dark:bg-gray-100 dark:text-gray-800">
               <div className="container flex flex-col justify-center p-6 mx-auto sm:py-12 lg:py-24 lg:flex-row lg:justify-between">
                 <div className="flex items-center justify-center p-2 mt-2 lg:mt-0 h-72 sm:h-80 lg:h-96 xl:h-112 2xl:h-128">
-                  <img
-                    src="https://i.ibb.co/L5QL0zs/49451dbms1.jpg"
-                    alt=""
-                    className="cover h-72 sm:h-80 lg:h-96 xl:h-112 2xl:h-128 rounded"
-                  />
+                 <Lottie animationData={nodata} className="sm:w-5/6 w-full sm:mt-12 mt-2"></Lottie>
                 </div>
                 <div className="flex flex-col justify-center p-6 text-center rounded-sm lg:max-w-md xl:max-w-lg lg:text-left">
-                  <h1 className="text-5xl font-bold leading-none sm:text-6xl">
+                  <h1 className="text-2xl font-bold leading-none sm:text-6xl">
                     No Data
                     <span className="dark:text-violet-600">
                       {" "}

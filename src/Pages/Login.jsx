@@ -37,16 +37,16 @@ const Login = () => {
   };
   const handleSocialLogin = (provider) => {
     provider()
-       .then((result) => {
-         console.log(result);
-         setSuccess(toast.success("Login successfull"));
-         navigate(location?.state ? location.state : "/");
-       })
-       .catch((error) => {
-         setRegisterError(error.message);
-         toast.error(error.message);
-       });
-   };
+      .then((result) => {
+        console.log(result);
+        setSuccess(toast.success("Login successfull"));
+        navigate(location?.state ? location.state : "/");
+      })
+      .catch((error) => {
+        setRegisterError(error.message);
+        toast.error(error.message);
+      });
+  };
   return (
     <div>
       <div className="w-full max-w-md p-4 rounded-md shadow sm:p-8 dark:bg-gray-50 dark:text-gray-800 container mx-auto my-6 shadow-blue-100 ">
