@@ -11,8 +11,7 @@ const Register = () => {
   const [success, setSuccess] = useState("");
   const [registerError, setRegisterError] = useState("");
   // const [registerError, setRegisterError] = useState("");
-  const { createUser, updateUserProfile, googleLogin, gitHubLogin } =
-    UseAuth();
+  const { createUser, updateUserProfile, googleLogin, gitHubLogin } = UseAuth();
   const location = useLocation();
   const navigate = useNavigate();
   const handleRegister = (e) => {
@@ -48,7 +47,7 @@ const Register = () => {
       });
   };
   const handleSocialLogin = (provider) => {
-   provider()
+    provider()
       .then((result) => {
         console.log(result);
         setSuccess(toast.success("Login successfull"));
@@ -59,11 +58,11 @@ const Register = () => {
         toast.error(error.message);
       });
   };
- 
+
   return (
     <div className="w-full max-w-md p-4 rounded-md shadow sm:p-8 dark:bg-gray-50 dark:text-gray-800 container mx-auto my-6 shadow-blue-100">
       <Helmet>
-        <title>Register</title>
+        <title>Sign up</title>
       </Helmet>
       <h2 className="mb-3 text-3xl font-semibold text-center">
         Login to your account
