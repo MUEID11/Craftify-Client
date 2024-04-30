@@ -9,6 +9,17 @@ const MyCrafts = () => {
   const { user } = UseAuth();
   const [myCrafts, setMyCrafts] = useState([]);
   const [remaining, setRemaining] = useState(true);
+  const [showAll, setShowAll] = useState(true);
+  const handleCustomize = (e) => {
+    const change = e.target.value;
+    fetch(`http://localhost:5000/customization/${change}`)
+      .then((res) => res.json())
+      .then((data) => {
+        console.log(data);
+        setMyCrafts(data);
+      })
+      .catch((error) => console.log(error.message));
+  };
   useEffect(() => {
     fetch(`http://localhost:5000/mycraft/${user?.email}`)
       .then((res) => res.json())
@@ -20,7 +31,7 @@ const MyCrafts = () => {
         setLoading(false);
         console.log(error);
       });
-  }, [user, remaining]);
+  }, [user, remaining, showAll]);
   return (
     <div className="sm:my-12 min-h-screen">
       <Helmet>
@@ -29,10 +40,25 @@ const MyCrafts = () => {
       <h2 className="text-3xl font-bold text-center mb-6">
         My Arts and Crafts
       </h2>
+      <div className="flex justify-center items-center space-x-2">
+        <button className="btn btn-md" onClick={() => setShowAll(!showAll)}>
+          See all crafts
+        </button>
+        <select onChange={handleCustomize}>
+          <option disabled>Sort</option>
+          <option value="Yes">Yes</option>
+          <option value="No">No</option>
+        </select>
+      </div>
       <div className="container mx-auto grid md:grid-cols-2 lg:grid-cols-3 gap-8">
         {!loading ? (
           myCrafts.map((craft) => (
-            <MyItem key={craft?._id} craft={craft} remaining={remaining} setRemaining={setRemaining} ></MyItem>
+            <MyItem
+              key={craft?._id}
+              craft={craft}
+              remaining={remaining}
+              setRemaining={setRemaining}
+            ></MyItem>
           ))
         ) : (
           <>

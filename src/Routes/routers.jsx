@@ -43,6 +43,10 @@ const routers = createBrowserRouter([
         element: <PrivateRoute><MyCrafts/></PrivateRoute>
       },
       {
+        path: '/customize/:id',
+        element: <PrivateRoute><MyItem></MyItem></PrivateRoute>
+      },
+      {
         path: '/deleteCraft/:id',
         element: <PrivateRoute><MyItem/></PrivateRoute>
       },

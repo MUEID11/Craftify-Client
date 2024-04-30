@@ -1,6 +1,6 @@
 import { BiComment, BiHeart, BiStar } from "react-icons/bi";
 
-import { useEffect } from "react";
+
 
 import Swal from "sweetalert2";
 import { Link } from "react-router-dom";
