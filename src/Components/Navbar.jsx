@@ -24,7 +24,7 @@ const Navbar = () => {
   const handleSignOut = () => {
     logOutUser()
       .then((result) => {
-        toast.error("User logged out", result)
+        toast.error("User logged out", result);
       })
       .catch((error) => {
         console.log(error);
@@ -82,7 +82,7 @@ const Navbar = () => {
         </div>
         <div className="navbar-end">
           {loading ? (
-              <span className="text-purple-600 loading loading-infinity loading-lg"></span>
+            <span className="text-purple-600 loading loading-infinity loading-lg"></span>
           ) : (
             <div>
               {user ? (
@@ -129,7 +129,7 @@ const Navbar = () => {
                     Log In
                   </Link>
                   <Link
-                    to="/register"
+                    to="/signup"
                     type="button"
                     className="btn bg-violet-600 btn-xs sm:btn-sm rounded text-white"
                   >
