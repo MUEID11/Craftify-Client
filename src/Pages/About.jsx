@@ -3,7 +3,7 @@ import logo from "./../../public/vitelogo.png";
 
 const About = () => {
   return (
-    <div className="bg-gray-100 py-16 px-4 sm:px-6 lg:px-8">
+    <div className="py-16 px-4 sm:px-6 lg:px-8">
       <Helmet><title>About</title></Helmet>
       <div className="max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-center text-left">
         <div className="md:w-1/2">

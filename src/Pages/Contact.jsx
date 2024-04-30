@@ -1,5 +1,6 @@
+import Lottie from "lottie-react";
 import { Helmet } from "react-helmet";
-
+import contactus from "./../assets/contactus.json"
 const Contact = () => {
   return (
     <div className=" grid shadow-sm m-10 max-w-screen-xl grid-cols-1 gap-8 px-8 py-16 mx-auto rounded-lg md:grid-cols-2 md:px-12 lg:px-16 xl:px-32 dark:bg-gray-100 dark:text-gray-800">
@@ -15,11 +16,9 @@ const Contact = () => {
             Want to buy a estate? Go ahead.
           </div>
         </div>
-        <img
-          src="https://loudvideos.com/wp-content/uploads/2019/06/doodle-video.png"
-          alt=""
-          className="p-6 h-52 md:h-64"
-        />
+        <div>
+          <Lottie animationData={contactus}></Lottie>
+        </div>
       </div>
       <form noValidate="" className="space-y-6">
         <div>

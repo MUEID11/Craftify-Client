@@ -12,7 +12,7 @@ export default function SwiperSlider() {
   const [loading, setLoading] = useState(true);
   const [sliders, setSliders] = useState([]);
   useEffect(() => {
-    fetch("http://localhost:5000/sub_category")
+    fetch("https://b9-assignment10-server-zeta.vercel.app/sub_category")
       .then((res) => res.json())
       .then((data) => {
         setSliders(data);
@@ -26,9 +26,9 @@ export default function SwiperSlider() {
   return (
     <>
       {loading ? (
-       <div className="relative h-[65vh] flex items-center justify-center">
-       <span className="loading loading-ring loading-xs text-primary absolute translate-y-5"></span>
-     </div>
+        <div className="relative h-[65vh] flex items-center justify-center">
+          <span className="loading loading-ring loading-xs text-primary absolute translate-y-5"></span>
+        </div>
       ) : (
         <Swiper
           spaceBetween={30}

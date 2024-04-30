@@ -18,7 +18,7 @@ function UpdateItem() {
   } = updateItem;
   const [subCategory, setSubCategory] = useState([]);
   useEffect(() => {
-    fetch(`http://localhost:5000/update/${id}`)
+    fetch(`https://b9-assignment10-server-zeta.vercel.app/update/${id}`)
       .then((res) => res.json())
       .then((item) => {
         console.log(item);
@@ -55,7 +55,7 @@ function UpdateItem() {
       customization,
       processingTime,
     };
-    fetch(`http://localhost:5000/updateitem/${id}`, {
+    fetch(`https://b9-assignment10-server-zeta.vercel.app/updateitem/${id}`, {
       method: "PUT",
       headers: { "content-type": "application/json" },
       body: JSON.stringify(updateInfo),
@@ -64,7 +64,7 @@ function UpdateItem() {
       .then((data) => {
         console.log(data);
         if (data.modifiedCount > 0) {
-        setUpdateItem(updateInfo)
+          setUpdateItem(updateInfo);
           Swal.fire({
             title: "Item updated!",
             text: "Your item is updated!",
@@ -75,7 +75,7 @@ function UpdateItem() {
   };
 
   useEffect(() => {
-    fetch("http://localhost:5000/sub_category")
+    fetch("https://b9-assignment10-server-zeta.vercel.app/sub_category")
       .then((res) => res.json())
       .then((subdata) => {
         setSubCategory(subdata);
@@ -216,12 +216,12 @@ function UpdateItem() {
             />
           </div>
         </div>
-          <button
-            type="submit"
-            className="bg-violet-500 hover:bg-violet-700 w-full text-white font-bold py-2 px-4 rounded mt-4"
-          >
-            Update
-          </button>
+        <button
+          type="submit"
+          className="bg-violet-500 hover:bg-violet-700 w-full text-white font-bold py-2 px-4 rounded mt-4"
+        >
+          Update
+        </button>
       </form>
     </div>
   );

@@ -12,7 +12,9 @@ const MyCrafts = () => {
   const [showAll, setShowAll] = useState(true);
   const handleCustomize = (e) => {
     const change = e.target.value;
-    fetch(`http://localhost:5000/customization/${change}`)
+    fetch(
+      `https://b9-assignment10-server-zeta.vercel.app/customization/${change}`
+    )
       .then((res) => res.json())
       .then((data) => {
         console.log(data);
@@ -21,7 +23,9 @@ const MyCrafts = () => {
       .catch((error) => console.log(error.message));
   };
   useEffect(() => {
-    fetch(`http://localhost:5000/mycraft/${user?.email}`)
+    fetch(
+      `https://b9-assignment10-server-zeta.vercel.app/mycraft/${user?.email}`
+    )
       .then((res) => res.json())
       .then((items) => {
         setMyCrafts(items);

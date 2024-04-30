@@ -5,7 +5,7 @@ const AllCrafts = () => {
   const [loading, setLoading] = useState(true);
   const [craftItem, setCraftsItem] = useState([]);
   useEffect(() => {
-    fetch("http://localhost:5000/allart")
+    fetch("https://b9-assignment10-server-zeta.vercel.app/allart")
       .then((res) => res.json())
       .then((crafts) => {
         setCraftsItem(crafts);
@@ -56,7 +56,7 @@ const AllCrafts = () => {
                     </div>
                   </td>
                   <td>
-                   {item?.shortDescription?.slice(0, 30)}...
+                    {item?.shortDescription?.slice(0, 30)}...
                     <br />
                     <span className="badge badge-ghost badge-sm">
                       {item?.stockStatus}
@@ -65,7 +65,7 @@ const AllCrafts = () => {
                   <td>{item?.subcategory}</td>
                   <th>
                     <Link to={`/details/${item?._id}`}>
-                    <button className="btn btn-ghost btn-sm">details</button>
+                      <button className="btn btn-ghost btn-sm">details</button>
                     </Link>
                   </th>
                 </tr>

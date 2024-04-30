@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-
+import PropType from "prop-types"
 const ArtCraftCard = ({ category }) => {
   const { itemName, photo, subcategory } = category;
   return (
@@ -21,5 +21,10 @@ const ArtCraftCard = ({ category }) => {
     </div>
   );
 };
+
+ArtCraftCard.propTypes ={
+  ArtCraftCard: PropType.node,
+  category: PropType.object,
+}
 
 export default ArtCraftCard;

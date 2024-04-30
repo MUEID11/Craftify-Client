@@ -2,7 +2,6 @@ import { useEffect, useState } from "react";
 import UseAuth from "../hooks/UseAuth";
 import { toast } from "react-toastify";
 
-
 function AddCraftItem() {
   const { user } = UseAuth();
   const [subCategory, setSubCategory] = useState([]);
@@ -35,7 +34,7 @@ function AddCraftItem() {
     };
     // Implement your form submission logic here
     console.log(formData);
-    fetch("http://localhost:5000/allart", {
+    fetch("https://b9-assignment10-server-zeta.vercel.app/allart", {
       method: "POST",
       headers: { "content-type": "application/json" },
       body: JSON.stringify(formData),
@@ -53,7 +52,7 @@ function AddCraftItem() {
   };
 
   useEffect(() => {
-    fetch("http://localhost:5000/sub_category")
+    fetch("https://b9-assignment10-server-zeta.vercel.app/sub_category")
       .then((res) => res.json())
       .then((subdata) => {
         console.log(subdata);

@@ -5,7 +5,7 @@ const ArtCraftCategories = () => {
   const [categories, setCategories] = useState([]);
   const [loading, setLoading] = useState(true);
   useEffect(() => {
-    fetch("http://localhost:5000/sub_category")
+    fetch("https://b9-assignment10-server-zeta.vercel.app/sub_category")
       .then((res) => res.json())
       .then((data) => {
         setCategories(data);
@@ -29,7 +29,14 @@ const ArtCraftCategories = () => {
             <h2>Art and Craft Categories</h2>
             <Typewriter
               options={{
-                strings: ["Card Making", "Scarp Booking", "Glass Painting", "Lampworking","Glass Dying & Staining","Paper Quilling & Origami"],
+                strings: [
+                  "Card Making",
+                  "Scarp Booking",
+                  "Glass Painting",
+                  "Lampworking",
+                  "Glass Dying & Staining",
+                  "Paper Quilling & Origami",
+                ],
                 autoStart: true,
                 loop: true,
               }}

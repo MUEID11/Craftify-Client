@@ -1,7 +1,5 @@
 import { BiComment, BiHeart, BiStar } from "react-icons/bi";
-
-
-
+import PropTypes from "prop-types";
 import Swal from "sweetalert2";
 import { Link } from "react-router-dom";
 
@@ -29,9 +27,12 @@ const MyItem = ({ craft, remaining, setRemaining }) => {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        fetch(`http://localhost:5000/deleteitem/${_id}`, {
-          method: "DELETE",
-        })
+        fetch(
+          `https://b9-assignment10-server-zeta.vercel.app/deleteitem/${_id}`,
+          {
+            method: "DELETE",
+          }
+        )
           .then((res) => res.json())
           .then((data) => {
             console.log(data);
@@ -47,7 +48,7 @@ const MyItem = ({ craft, remaining, setRemaining }) => {
       }
     });
   };
-  
+
   return (
     <div>
       <div className="flex flex-col max-w-lg p-6 space-y-4 overflow-hidden rounded-lg shadow-md dark:bg-gray-50 dark:text-gray-800">
@@ -76,7 +77,7 @@ const MyItem = ({ craft, remaining, setRemaining }) => {
           </p>
         </div>
         <div className="flex space-x-2 text-sm dark:text-white text-gray-700">
-          <Link  to={`/updateCraft/${_id}`}>
+          <Link to={`/updateCraft/${_id}`}>
             <button type="button" className="btn btn-sm sm:btn-md bg-green-600">
               Update
             </button>
@@ -113,4 +114,11 @@ const MyItem = ({ craft, remaining, setRemaining }) => {
   );
 };
 
+MyItem.propTypes = {
+  MyItem: PropTypes.node,
+  craft: PropTypes.node,
+  remaining: PropTypes.node,
+  setRemaining: PropTypes.node,
+
+}
 export default MyItem;

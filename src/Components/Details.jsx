@@ -17,7 +17,7 @@ const Details = () => {
   } = craftDetails;
   console.log(id);
   useEffect(() => {
-    fetch(`http://localhost:5000/allartcraft/${id}`)
+    fetch(`https://b9-assignment10-server-zeta.vercel.app/allartcraft/${id}`)
       .then((res) => res.json())
       .then((item) => {
         console.log(item);

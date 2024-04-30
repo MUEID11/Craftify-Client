@@ -7,7 +7,7 @@ const SubCategories = () => {
   const [cats, setCats] = useState([]);
   console.log(cats);
   useEffect(() => {
-    fetch(`http://localhost:5000/cat/${id}`)
+    fetch(`https://b9-assignment10-server-zeta.vercel.app/cat/${id}`)
       .then((res) => res.json())
       .then((data) => {
         setCats(data);
