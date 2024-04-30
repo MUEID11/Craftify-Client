@@ -4,7 +4,7 @@
 Welcome to Paper Crafts & Glass Art! This website is dedicated to showcasing beautiful creations made from paper and glass. Whether you're an artist looking to share your work or an enthusiast seeking inspiration, you'll find a vibrant community and stunning pieces to explore.
 
 ## Live Site
-[Visit Paper Crafts & Glass Art](https://b9-assignment10.web.app)
+[Visit Paper Crafts & Glass Art](https://b9-assignment10.firebaseapp.com/)
 
 ## Features
 - **Inspiring Creations**: Explore a diverse range of paper crafts and glass art pieces, from intricate origami designs to stunning stained glass windows.
@@ -17,5 +17,5 @@ Welcome to Paper Crafts & Glass Art! This website is dedicated to showcasing bea
 We're always looking to grow our community and feature new talent! Whether you're a seasoned artist or just starting out, we'd love to see your creations. Join us today and unleash your creativity!
 
 ## Feedback
-Have suggestions or feedback to improve Paper Crafts & Glass Art? We'd love to hear from you! Reach out to us through our website or email us at feedback@example.com.
+Have suggestions or feedback to improve Paper Crafts & Glass Art? We'd love to hear from you! Reach out to us through our website or email us at [feedback@example.com](https://b9-assignment10.firebaseapp.com/contacts).
 

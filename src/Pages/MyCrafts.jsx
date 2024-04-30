@@ -13,7 +13,7 @@ const MyCrafts = () => {
   const handleCustomize = (e) => {
     const change = e.target.value;
     fetch(
-      `https://b9-assignment10-server-zeta.vercel.app/customization/${change}`
+      `https://b9-assignment10-server-zeta.vercel.app/customization/${change}/${user?.email}`
     )
       .then((res) => res.json())
       .then((data) => {
