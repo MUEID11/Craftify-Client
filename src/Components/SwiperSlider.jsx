@@ -47,16 +47,16 @@ export default function SwiperSlider() {
           {sliders.map((slide) => (
             <SwiperSlide key={slide._id}>
               <div
-                className="hero bg-cover min-h-[350px] sm:min-h-[600px]"
+                className="hero bg-cover min-h-[350px] sm:min-h-[600px] z-[-1]"
                 style={{ backgroundImage: `url(${slide?.photo})` }}
               >
                 <div className="bg-opacity-60"></div>
                 <div className="hero-content text-center text-neutral-content">
                   <div className="max-w-md">
-                    <h1 className="mb-5 text-6xl text-violet-500 font-extrabold  animate__animated animate__backInDown">
+                    <h1 className="mb-5 text-3xl sm:text-6xl text-violet-500 font-extrabold  animate__animated animate__backInDown">
                       {slide?.itemName}
                     </h1>
-                    <p className="mb-5 text-2xl text-slate-700 font-bold  animate__animated animate__backInUp">
+                    <p className="mb-5 sm:text-2xl text-slate-700 font-bold  animate__animated animate__backInUp">
                       {slide?.shortDescription}
                     </p>
                   </div>

@@ -29,7 +29,6 @@ const AllCrafts = () => {
               <tr>
                 <th></th>
                 <th>Name</th>
-                <th>Description</th>
                 <th>Sub Category</th>
                 <th></th>
               </tr>
@@ -42,25 +41,12 @@ const AllCrafts = () => {
                   <td>
                     <div className="flex items-center gap-3">
                       <div className="avatar">
-                        <div className="mask mask-squircle w-12 h-12">
-                          <img
-                            src={item?.photo}
-                            alt="Avatar Tailwind CSS Component"
-                          />
-                        </div>
                       </div>
                       <div>
                         <div className="font-bold">{item?.itemName}</div>
                         <div className="text-sm opacity-50">{item?.name}</div>
                       </div>
                     </div>
-                  </td>
-                  <td>
-                    {item?.shortDescription?.slice(0, 30)}...
-                    <br />
-                    <span className="badge badge-ghost badge-sm">
-                      {item?.stockStatus}
-                    </span>
                   </td>
                   <td>{item?.subcategory}</td>
                   <th>

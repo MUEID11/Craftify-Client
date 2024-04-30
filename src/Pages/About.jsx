@@ -14,32 +14,32 @@ const About = () => {
           />
         </div>
         <div className="md:w-1/2 md:ml-8 mt-8 md:mt-0">
-          <h2 className="text-3xl font-extrabold text-gray-900 sm:text-4xl">
+          <h2 className="text-3xl font-extrabold  sm:text-4xl">
             About Us
           </h2>
-          <p className="mt-4 text-lg text-gray-600">
+          <p className="mt-4 text-lg ">
             Welcome to our website! We are dedicated to providing high-quality
             residential buildings that cater to your needs and lifestyle.
           </p>
           <div className="mt-10">
-            <h3 className="text-xl font-semibold text-gray-900">Our Mission</h3>
-            <p className="mt-2 text-gray-600">
+            <h3 className="text-xl font-semibold ">Our Mission</h3>
+            <p className="mt-2 ">
               Our mission is to build homes that not only meet the highest
               standards of quality and craftsmanship but also reflect the unique
               personality and preferences of each homeowner.
             </p>
-            <h3 className="mt-8 text-xl font-semibold text-gray-900">
+            <h3 className="mt-8 text-xl font-semibold ">
               Our Vision
             </h3>
-            <p className="mt-2 text-gray-600">
+            <p className="mt-2 ">
               Our vision is to create vibrant communities where residents feel a
               sense of belonging and pride in their homes, surrounded by
               amenities and green spaces that enhance their quality of life.
             </p>
-            <h3 className="mt-8 text-xl font-semibold text-gray-900">
+            <h3 className="mt-8 text-xl font-semibold ">
               Our Values
             </h3>
-            <ul className="mt-2 text-gray-600 list-disc list-inside">
+            <ul className="mt-2  list-disc list-inside">
               <li>Quality craftsmanship</li>
               <li>Customer satisfaction</li>
               <li>Community engagement</li>

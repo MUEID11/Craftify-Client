@@ -25,7 +25,7 @@ const ArtCraftCategories = () => {
         </div>
       ) : (
         <div className="container mx-auto my-6 sm:my-28">
-          <div className="text-center text-4xl font-bold my-12 space-y-4">
+          <div className="text-center text-xl sm:text-4xl font-bold my-12 space-y-4">
             <h2>Art and Craft Categories</h2>
             <Typewriter
               options={{

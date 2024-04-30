@@ -17,8 +17,8 @@ const CraftItems = () => {
   }, []);
   return (
     <div className="container mx-auto sm:my-24 my-6">
-      <h2 className="my-8 lg:my-16 text-center text-4xl font-bold">
-        Crafts Items
+      <h2 className="my-8 lg:my-16 text-center text-2xl sm:text-4xl font-bold">
+          Paper Crafts & Glass Art
       </h2>
       <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
         {loading ? (

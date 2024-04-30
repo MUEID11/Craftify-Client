@@ -86,7 +86,7 @@ const MyItem = ({ craft, remaining, setRemaining }) => {
           <button
             type="button"
             onClick={handleDelete}
-            className="flex items-center btn btn-md space-x-1.5 bg-red-600 px-4 py-2 rounded"
+            className="flex items-center btn btn-sm sm:btn-md space-x-1.5 bg-red-600 px-4 py-2"
           >
             Delete
           </button>
@@ -116,9 +116,9 @@ const MyItem = ({ craft, remaining, setRemaining }) => {
 
 MyItem.propTypes = {
   MyItem: PropTypes.node,
-  craft: PropTypes.node,
-  remaining: PropTypes.node,
-  setRemaining: PropTypes.node,
+  craft: PropTypes.object,
+  remaining: PropTypes.bool,
+  setRemaining: PropTypes.func,
 
 }
 export default MyItem;

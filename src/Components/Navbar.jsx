@@ -11,7 +11,6 @@ const Navbar = () => {
   useEffect(() => {
     localStorage.setItem("theme", theme);
     const localTheme = localStorage.getItem("theme");
-    console.log(localTheme);
     document.querySelector("html").setAttribute("data-theme", localTheme);
   }, [theme]);
   const handleToggle = (e) => {
@@ -55,7 +54,7 @@ const Navbar = () => {
   );
   return (
     <div>
-      <div className="navbar container mx-auto">
+      <div className="navbar container mx-auto relative z-[30]">
         <div className="navbar-start">
           <div className="dropdown">
             <div tabIndex={0} role="button" className="lg:hidden px-2">
@@ -102,7 +101,7 @@ const Navbar = () => {
                   </div>
                   <ul
                     tabIndex={0}
-                    className="menu menu-sm absolute hidden group-hover:block top-8  mt-3 z-[10] p-2 shadow bg-base-100 rounded-box w-52"
+                    className="menu menu-sm absolute hidden group-hover:block top-8 z-[10] mt-4 -left-44 p-2 shadow bg-base-100 rounded-box w-52"
                   >
                     <li>
                       <a className="justify-between">
@@ -121,18 +120,18 @@ const Navbar = () => {
                   </ul>
                 </div>
               ) : (
-                <div className="space-x-2">
+                <div className="space-x-2 flex items-center mr-2">
                   <Link
                     to="/login"
                     type="button"
-                    className="btn bg-violet-500 btn-sm rounded text-white"
+                    className="btn bg-violet-500 btn-xs sm:btn-sm rounded text-white"
                   >
                     Log In
                   </Link>
                   <Link
                     to="/register"
                     type="button"
-                    className="btn bg-violet-600 btn-sm rounded text-white"
+                    className="btn bg-violet-600 btn-xs sm:btn-sm rounded text-white"
                   >
                     Register
                   </Link>

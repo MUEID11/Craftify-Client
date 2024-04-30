@@ -6,7 +6,7 @@ const TalentedPeople = () => {
           <p className="p-2 text-sm font-medium tracking-wider text-center uppercase">
             Development team
           </p>
-          <h1 className="text-4xl font-bold leading-none text-center sm:text-5xl">
+          <h1 className="text-2xl font-bold leading-none text-center sm:text-5xl">
             The talented people behind the scenes
           </h1>
           <div className="flex flex-row flex-wrap-reverse justify-center mt-8">

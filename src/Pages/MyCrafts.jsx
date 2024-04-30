@@ -37,14 +37,14 @@ const MyCrafts = () => {
       });
   }, [user, remaining, showAll]);
   return (
-    <div className="sm:my-12 min-h-screen">
+    <div className="sm:my-12 min-h-screen p-6">
       <Helmet>
         <title>My Crafts</title>
       </Helmet>
       <h2 className="text-3xl font-bold text-center mb-6">
         My Arts and Crafts
       </h2>
-      <div className="flex justify-center items-center space-x-2">
+      <div className="flex justify-center items-center space-x-2 mb-8">
         <button className="btn btn-md" onClick={() => setShowAll(!showAll)}>
           See all crafts
         </button>
@@ -65,7 +65,7 @@ const MyCrafts = () => {
             ></MyItem>
           ))
         ) : (
-          <>
+
             (
             <>
               <div className="relative h-screen flex items-center justify-center">
@@ -73,7 +73,7 @@ const MyCrafts = () => {
               </div>
             </>
             )
-          </>
+       
         )}
         {myCrafts.length === 0 && !loading && (
           <div className="container mx-auto col-span-3 text-center text-5xl">
