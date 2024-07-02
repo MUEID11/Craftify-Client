@@ -13,8 +13,13 @@ Welcome to Paper Crafts & Glass Art! This website is dedicated to showcasing bea
 - **Shop**: Find everything you need to get started on your next project in our curated shop. From specialty papers to glass cutting tools, we've got you covered.
 - **Events Calendar**: Stay up-to-date with the latest paper crafts and glass art events happening near you. Whether it's a local workshop or a renowned exhibition, you won't miss a thing.
 
-## Get Involved
-We're always looking to grow our community and feature new talent! Whether you're a seasoned artist or just starting out, we'd love to see your creations. Join us today and unleash your creativity!
+## Getting Started
+1. **Clone the Repository**: From [GitHub URL].
+2. **Install Dependencies**: Run `npm install`.
+3. **Set Environment Variables**: For Firebase and MongoDB.
+4. **Start the Server**: Run `npm start`.
+6. **Launch the Client**: In the client directory, run `npm start`.
+7. **Explore the Platform**: Use the live site URL.
 
 ## Feedback
 Have suggestions or feedback to improve Paper Crafts & Glass Art? We'd love to hear from you! Reach out to us through our website or email us at [feedback@example.com](https://b9-assignment10.firebaseapp.com/contacts).
