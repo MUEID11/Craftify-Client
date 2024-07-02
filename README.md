@@ -14,7 +14,7 @@ Welcome to Paper Crafts & Glass Art! This website is dedicated to showcasing bea
 - **Events Calendar**: Stay up-to-date with the latest paper crafts and glass art events happening near you. Whether it's a local workshop or a renowned exhibition, you won't miss a thing.
 
 ## Getting Started
-1. **Clone the Repository**: From [[GitHub URL]](https://github.com/MUEID11/Craftify-Client.git).
+1. **Clone the Repository**: From the github url above.
 2. **Install Dependencies**: Run `npm install`.
 3. **Set Environment Variables**: For Firebase and MongoDB.
 4. **Start the Server**: Run `npm start`.
